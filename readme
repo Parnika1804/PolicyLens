@@ -1,0 +1,51 @@
+# 🔍 PolicyLens: AI-Powered Insurance Analysis & Legal Assistant
+
+PolicyLens is a specialized tool designed to bridge the gap between complex insurance legal jargon and policyholders. It uses Large Language Models (LLMs) to analyze Indian insurance policies, provide health scores, simulate claim scenarios, and guide users through the legal appeal process if a claim is rejected.
+
+## 🚀 Key Features
+
+### 1. Phase 1: Coverage Breakdown
+* **Plain English Insights:** Extracts and categorizes policy details into **Covered**, **Not Covered**, **Conditional**, and **Waiting Periods**.
+* **Jargon-Free:** No more reading 50+ page PDFs; get the summary in seconds.
+
+### 2. Policy Health Score
+* **Metric-Driven:** Assigns an overall score (0-100) and a grade (A-D).
+* **Risk Identification:** Flags the "Biggest Risk" found in the policy (e.g., unusually long waiting periods or hidden exclusions).
+
+### 3. Scenario Simulator
+* **Predictive Analysis:** Input a specific medical or accidental scenario.
+* **Claim Roadmap:** Predicts if a claim would be covered today and provides a visual timeline for when "Waiting Period" items become eligible.
+
+### 4. Phase 3: Legal Fightback (Internal Appeal to Ombudsman)
+* **5-Step Legal Framework:** Guided path from Internal Appeal -> Legal Notice -> IRDAI IGMS -> Insurance Ombudsman -> Consumer Court.
+* **AI Letter Generation:** Generates professional, legally-worded appeal emails based on your specific policy and rejection reason.
+* **City-Specific Data:** Provides contact details for the Insurance Ombudsman across major Indian cities.
+
+## 🛠️ Tech Stack
+* **Frontend:** [Streamlit](https://streamlit.io/)
+* **PDF Processing:** [PyMuPDF (fitz)](https://pymupdf.readthedocs.io/)
+* **LLM API:** [Groq Cloud](https://console.groq.com/) (using `llama-3.3-70b-versatile` and `llama-3.1-8b-instant`)
+* **Deployment Environment:** Google Colab (via `ngrok` for tunneling)
+
+## 📦 Installation & Setup
+
+1.  **Clone the environment:** Run in a Google Colab notebook or local Python environment.
+2.  **Install dependencies:**
+    ```bash
+    pip install streamlit pypdf fitz frontend groq pyngrok
+    ```
+3.  **API Keys:**
+    * Obtain a Groq API Key from [Groq Console](https://console.groq.com/).
+    * (Optional) Obtain an ngrok authtoken for web hosting from [ngrok](https://ngrok.com/).
+4.  **Run the App:**
+    ```python
+    # In Colab
+    !streamlit run app.py & npx localtunnel --port 8501
+    ```
+
+## ⚖️ Legal Disclaimer
+*PolicyLens provides AI-generated analysis based on the text provided. It does not constitute formal legal advice. Always consult with a qualified legal professional or insurance advisor for official claims.*
+
+---
+**Developed by:** CSE Student (6th Sem)
+**Powered by:** Groq & Llama 3
