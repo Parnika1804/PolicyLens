@@ -1,51 +1,72 @@
-# 🔍 PolicyLens: AI-Powered Insurance Analysis & Legal Assistant
 
-PolicyLens is a specialized tool designed to bridge the gap between complex insurance legal jargon and policyholders. It uses Large Language Models (LLMs) to analyze Indian insurance policies, provide health scores, simulate claim scenarios, and guide users through the legal appeal process if a claim is rejected.
+# 🔍 PolicyLens: AI-Powered Insurance Advocacy
+> **Turning 50-page legal "traps" into clear, actionable health security.**
 
-## 🚀 Key Features
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-FF4B4B.svg)](https://streamlit.io/)
+[![Groq](https://img.shields.io/badge/LLM-Groq%20Llama%203-orange.svg)](https://groq.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### 1. Phase 1: Coverage Breakdown
-* **Plain English Insights:** Extracts and categorizes policy details into **Covered**, **Not Covered**, **Conditional**, and **Waiting Periods**.
-* **Jargon-Free:** No more reading 50+ page PDFs; get the summary in seconds.
+## 📌 The Problem
+Most Indian insurance policies are written in "Legalese"—complex jargon designed to protect the insurer, not the insured. Policyholders often discover "Clause 12, Subsection 4" only *after* a claim is rejected during a medical crisis. 
 
-### 2. Policy Health Score
-* **Metric-Driven:** Assigns an overall score (0-100) and a grade (A-D).
-* **Risk Identification:** Flags the "Biggest Risk" found in the policy (e.g., unusually long waiting periods or hidden exclusions).
-
-### 3. Scenario Simulator
-* **Predictive Analysis:** Input a specific medical or accidental scenario.
-* **Claim Roadmap:** Predicts if a claim would be covered today and provides a visual timeline for when "Waiting Period" items become eligible.
-
-### 4. Phase 3: Legal Fightback (Internal Appeal to Ombudsman)
-* **5-Step Legal Framework:** Guided path from Internal Appeal -> Legal Notice -> IRDAI IGMS -> Insurance Ombudsman -> Consumer Court.
-* **AI Letter Generation:** Generates professional, legally-worded appeal emails based on your specific policy and rejection reason.
-* **City-Specific Data:** Provides contact details for the Insurance Ombudsman across major Indian cities.
-
-## 🛠️ Tech Stack
-* **Frontend:** [Streamlit](https://streamlit.io/)
-* **PDF Processing:** [PyMuPDF (fitz)](https://pymupdf.readthedocs.io/)
-* **LLM API:** [Groq Cloud](https://console.groq.com/) (using `llama-3.3-70b-versatile` and `llama-3.1-8b-instant`)
-* **Deployment Environment:** Google Colab (via `ngrok` for tunneling)
-
-## 📦 Installation & Setup
-
-1.  **Clone the environment:** Run in a Google Colab notebook or local Python environment.
-2.  **Install dependencies:**
-    ```bash
-    pip install streamlit pypdf fitz frontend groq pyngrok
-    ```
-3.  **API Keys:**
-    * Obtain a Groq API Key from [Groq Console](https://console.groq.com/).
-    * (Optional) Obtain an ngrok authtoken for web hosting from [ngrok](https://ngrok.com/).
-4.  **Run the App:**
-    ```python
-    # In Colab
-    !streamlit run app.py & npx localtunnel --port 8501
-    ```
-
-## ⚖️ Legal Disclaimer
-*PolicyLens provides AI-generated analysis based on the text provided. It does not constitute formal legal advice. Always consult with a qualified legal professional or insurance advisor for official claims.*
+**PolicyLens** solves this by using specialized LLM agents to act as a **Senior Indian Insurance Lawyer** in your pocket.
 
 ---
-**Developed by:** CSE Student (6th Sem)
-**Powered by:** Groq & Llama 3
+
+## 🛠️ The 3-Phase Solution
+
+### 🛡️ Phase 1: Intelligent Policy Audit
+* **Automated Extraction:** High-speed parsing of multi-page PDFs using `PyMuPDF`.
+* **The 4-Quadrant View:** Instant categorization into **Covered**, **Not Covered**, **Conditional**, and **Waiting Periods**.
+* **Health Scoring:** An algorithmic rating (0-100) based on IRDAI benchmarks, flagging high-risk exclusions.
+
+### 📅 Phase 2: Claim Scenario Simulator
+* **Predictive Eligibility:** "Will my father's heart attack be covered if he had surgery 2 years ago?"
+* **Visual Roadmap:** Generates a dynamic timeline showing exactly when specific waiting periods end.
+
+### ⚖️ Phase 3: Legal Fightback Engine
+* **Escalation Guidance:** A 5-step roadmap from internal GRO appeals to the Insurance Ombudsman.
+* **Auto-Drafting:** Generates legally-sound, professional appeal emails tailored to your specific rejection letter and policy clauses.
+* **Ombudsman Directory:** Built-in database of contact details for major Indian metros.
+
+---
+
+## 🏗️ Technical Architecture & Optimizations
+The core challenge of this project was balancing **LLM precision** with **API rate limits (TPM/RPD)** on the Groq Free Tier.
+
+* **Dual-Model Pipeline:** * `Llama-3.3-70b-versatile` for high-reasoning tasks (Health Scoring & Clause Analysis).
+    * `Llama-3.1-8b-instant` for high-speed tasks (Scenario Simulation & Email Drafting).
+* **Rate-Limit Management:** Implemented context-window slicing (6,000 char limit) and `time.sleep` intervals to stay within 12,000 TPM limits.
+* **Persona Engineering:** System prompts hardcoded with 20+ years of "Indian Insurance Law" context to reduce hallucinations.
+
+---
+
+## 🚀 Quick Start
+
+### 1. Prerequisites
+* Python 3.10+
+* A Groq API Key ([Get it here](https://console.groq.com/))
+* An ngrok token (if running via Google Colab)
+
+### 2. Installation
+```bash
+git clone https://github.com/yourusername/PolicyLens.git
+cd PolicyLens
+pip install -r requirements.txt
+```
+
+### 3. Execution (Local)
+```bash
+streamlit run app.py
+```
+
+---
+
+## 📈 Future Roadmap
+- [ ] **OCR Integration:** Support for scanned/photo-based policy documents.
+- [ ] **Multi-Policy Comparison:** Side-by-side "Value for Money" analysis.
+- [ ] **Regional Language Support:** Translation of legal summaries into Hindi, Tamil, and Bengali.
+
+## ⚖️ Disclaimer
+*This tool is an AI assistant and provides analysis based on provided text. It is for educational and informational purposes only and does not replace professional legal or financial advice.*
